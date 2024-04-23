@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp">
+
+    <TextView
+        android:id="@+id/titleWelcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="Welcome!\nPlease enter your name and weight."
+        android:textSize="36dp"
+        app:layout_constraintBottom_toTopOf="@+id/titleNameText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/titleNameText"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:gravity="center"
+        android:hint="Your Name"
+        app:boxStrokeColor="#03A9F4"
+        app:cursorColor="@color/black"
+        app:hintTextColor="#03A9F4"
+        app:layout_constraintEnd_toEndOf="@+id/titleWelcome"
+        app:layout_constraintStart_toStartOf="@+id/titleWelcome"
+        app:layout_constraintTop_toBottomOf="@id/titleWelcome">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/titleWeightText"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:hint="Your Weight"
+        app:boxStrokeColor="#03A9F4"
+        app:cursorColor="@color/black"
+        app:hintTextColor="#03A9F4"
+        app:layout_constraintEnd_toEndOf="@+id/titleNameText"
+        app:layout_constraintStart_toStartOf="@+id/titleNameText"
+        app:layout_constraintTop_toBottomOf="@id/titleNameText">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textViewWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="kg"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/titleWeightText"
+        app:layout_constraintStart_toEndOf="@id/titleWeightText"
+        app:layout_constraintTop_toTopOf="@+id/titleWeightText" />
+
+
+    <TextView
+        android:id="@+id/buttonContinue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Continue"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
