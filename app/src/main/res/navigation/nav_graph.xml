@@ -20,6 +20,9 @@
         android:name="com.example.maps.screens.run.RunFragment"
         android:label="RunFragment"
         tools:layout="@layout/fragment_run" >
+        <action
+            android:id="@+id/to_trackingFragment"
+            app:destination="@id/trackingFragment" />
     </fragment>
 
     <fragment
@@ -38,6 +41,10 @@
         android:id="@+id/trackingFragment"
         android:name="com.example.maps.screens.tracking.TrackingFragment"
         android:label="TrackingFragment"
-        tools:layout="@layout/fragment_tracking" />
+        tools:layout="@layout/fragment_tracking" >
+        <action
+            android:id="@+id/to_runFragment"
+            app:destination="@id/runFragment" />
+    </fragment>
 
 </navigation>
