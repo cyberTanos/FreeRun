@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.example.maps.data.local.RunDAO
 import com.example.maps.data.local.RunDatabase
-import com.example.maps.other.Constants.RUN_DATABASE_NAME
+import com.example.maps.other.RUN_DATABASE_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
