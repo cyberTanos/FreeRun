@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.maps.R
 import com.example.maps.databinding.FragmentSetupBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SetupFragment : Fragment(R.layout.fragment_setup) {
 
     private var _binding: FragmentSetupBinding? = null
