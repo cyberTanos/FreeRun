@@ -14,6 +14,7 @@ import com.example.maps.other.ACTION_START_OR_RESUME_SERVICE
 import com.example.maps.other.MAP_ZOOM
 import com.example.maps.other.POLYLINE_COLOR
 import com.example.maps.other.POLYLINE_WIDTH
+import com.example.maps.other.TrackingUtility
 import com.example.maps.services.Polyline
 import com.example.maps.services.TrackingService
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -33,21 +34,26 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking) {
 
     private var map: GoogleMap? = null
 
+    private var curTimeInMillis = 0L
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentTrackingBinding.inflate(inflater, container, false)
-        binding.mapView.onCreate(savedInstanceState)
+        initMap(savedInstanceState)
+        subscribeToObservers()
+
         binding.btnToggleRun.setOnClickListener {
             toggleRun()
         }
 
+        return binding.root
+    }
+
+    private fun initMap(savedInstanceState: Bundle?) {
+        binding.mapView.onCreate(savedInstanceState)
         binding.mapView.getMapAsync { googleMap ->
             map = googleMap
             addAllPolylines()
         }
-
-        subscribeToObservers()
-
-        return (binding.root)
     }
 
     private fun subscribeToObservers() {
@@ -58,6 +64,12 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking) {
             pathPoints = it
             addLatestPolyline()
             moveCameraToUser()
+        }
+
+        TrackingService.timeRunInMillis.observe(viewLifecycleOwner) {
+            curTimeInMillis = it
+            val formattedTime = TrackingUtility.getFormattedStopWatchTime(curTimeInMillis, true)
+            binding.tvTimer.text = formattedTime
         }
     }
 
