@@ -27,9 +27,8 @@ class RunFragment : Fragment(R.layout.fragment_run), EasyPermissions.PermissionC
         _binding = FragmentRunBinding.inflate(inflater, container, false)
 
         bindUI()
-        requestPermission()
 
-        return (binding.root)
+        return binding.root
     }
 
     private fun bindUI() {
