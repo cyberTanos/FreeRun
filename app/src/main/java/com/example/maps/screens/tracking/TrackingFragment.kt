@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.maps.R
 import com.example.maps.databinding.FragmentTrackingBinding
 import com.example.maps.other.ACTION_PAUSE_SERVICE
 import com.example.maps.other.ACTION_START_OR_RESUME_SERVICE
+import com.example.maps.other.ACTION_STOP_SERVICE
 import com.example.maps.other.MAP_ZOOM
 import com.example.maps.other.POLYLINE_COLOR
 import com.example.maps.other.POLYLINE_WIDTH
@@ -20,6 +22,7 @@ import com.example.maps.services.TrackingService
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.PolylineOptions
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -40,12 +43,25 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking) {
         _binding = FragmentTrackingBinding.inflate(inflater, container, false)
         initMap(savedInstanceState)
         subscribeToObservers()
+        createMenu()
 
         binding.btnToggleRun.setOnClickListener {
             toggleRun()
         }
 
         return binding.root
+    }
+
+    private fun createMenu() {
+        binding.toolbar?.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.miCancelTracking -> {
+                    showCancelTrackingDialog()
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun initMap(savedInstanceState: Bundle?) {
@@ -75,10 +91,32 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking) {
 
     private fun toggleRun() {
         if (isTracking) {
+            binding.toolbar?.menu?.getItem(0)?.isVisible = true
             sendCommandToService(ACTION_PAUSE_SERVICE)
         } else {
             sendCommandToService(ACTION_START_OR_RESUME_SERVICE)
         }
+    }
+
+    private fun showCancelTrackingDialog() {
+        val dialog = MaterialAlertDialogBuilder(requireContext(), com.bumptech.glide.R.style.AlertDialog_AppCompat)
+            .setTitle("Cancel the Run?")
+            .setMessage("Are you sure to cancel the current run and delete all its data?")
+            .setIcon(R.drawable.ic_delete)
+            .setPositiveButton("Yes") { _, _ ->
+                stopRun()
+            }
+            .setNegativeButton("No") { dialogInterface, _ ->
+                dialogInterface.cancel()
+            }
+            .create()
+        dialog.show()
+    }
+
+    private fun stopRun() {
+        sendCommandToService(ACTION_STOP_SERVICE)
+        binding.toolbar?.menu?.getItem(0)?.isVisible = false
+        findNavController().navigate(R.id.to_runFragment)
     }
 
     private fun updateTracking(isTracking: Boolean) {
@@ -88,6 +126,7 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking) {
             binding.btnFinishRun.visibility = View.VISIBLE
         } else {
             binding.btnToggleRun.text = "Stop"
+            binding.toolbar?.menu?.getItem(0)?.isVisible = true
             binding.btnFinishRun.visibility = View.GONE
         }
     }
