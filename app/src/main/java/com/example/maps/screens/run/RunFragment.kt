@@ -22,16 +22,24 @@ class RunFragment : Fragment(R.layout.fragment_run), EasyPermissions.PermissionC
     private var _binding: FragmentRunBinding? = null
     private val binding get() = _binding!!
     private val vm: RunVM by viewModels()
+    private val adapter = RunAdapter()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentRunBinding.inflate(inflater, container, false)
 
         bindUI()
+        vm.sortedByDate()
 
         return binding.root
     }
 
     private fun bindUI() {
+        binding.rvRuns.adapter = adapter
+
+        vm.runsSortedByDate.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
+
         binding.fab.setOnClickListener {
             findNavController().navigate(R.id.to_trackingFragment)
         }
