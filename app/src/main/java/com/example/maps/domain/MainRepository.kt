@@ -3,6 +3,8 @@ package com.example.maps.domain
 import com.example.maps.data.local.RunDAO
 import com.example.maps.model.entity.RunEntity
 import javax.inject.Inject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class MainRepositoryImpl @Inject constructor(
     private val dao: RunDAO
@@ -16,40 +18,58 @@ class MainRepositoryImpl @Inject constructor(
         dao.deleteRun(runEntity)
     }
 
-    override fun getAllRunSortedByDate(): List<RunEntity> {
-        return dao.getAllSortedByDate()
+    override suspend fun getAllRunSortedByDate(): List<RunEntity> {
+        return withContext(Dispatchers.IO) {
+            dao.getAllSortedByDate()
+        }
     }
 
-    override fun getAllRunSortedByDistance(): List<RunEntity> {
-        return dao.getAllSortedByDistanceInMeters()
+    override suspend fun getAllRunSortedByDistance(): List<RunEntity> {
+        return withContext(Dispatchers.IO) {
+            dao.getAllSortedByDistanceInMeters()
+        }
     }
 
-    override fun getAllRunSortedByTimeInMillis(): List<RunEntity> {
-        return dao.getAllSortedByTimeInMillis()
+    override suspend fun getAllRunSortedByTimeInMillis(): List<RunEntity> {
+        return withContext(Dispatchers.IO) {
+            dao.getAllSortedByTimeInMillis()
+        }
     }
 
-    override fun getAllRunSortedByAvgSpeed(): List<RunEntity> {
-        return dao.getAllSortedByAvgSpeedInKMH()
+    override suspend fun getAllRunSortedByAvgSpeed(): List<RunEntity> {
+        return withContext(Dispatchers.IO) {
+            dao.getAllSortedByAvgSpeedInKMH()
+        }
     }
 
-    override fun getAllRunSortedByCaloriesBurned(): List<RunEntity> {
-        return dao.getAllSortedByCaloriesBurned()
+    override suspend fun getAllRunSortedByCaloriesBurned(): List<RunEntity> {
+        return withContext(Dispatchers.IO) {
+            dao.getAllSortedByCaloriesBurned()
+        }
     }
 
-    override fun getTotalAvgSpeed(): Float {
-        return dao.getTotalAvgSpeed()
+    override suspend fun getTotalAvgSpeed(): Float {
+        return withContext(Dispatchers.IO) {
+            dao.getTotalAvgSpeed()
+        }
     }
 
-    override fun getTotalDistance(): Int {
-        return dao.getTotalDistance()
+    override suspend fun getTotalDistance(): Int {
+        return withContext(Dispatchers.IO) {
+            dao.getTotalDistance()
+        }
     }
 
-    override fun getTotalCaloriesBurned(): Int {
-        return dao.getTotalCaloriesBurned()
+    override suspend fun getTotalCaloriesBurned(): Int {
+        return withContext(Dispatchers.IO) {
+            dao.getTotalCaloriesBurned()
+        }
     }
 
-    override fun getTotalTimeInMillis(): Long {
-        return dao.getTotalTimeInMillis()
+    override suspend fun getTotalTimeInMillis(): Long {
+        return withContext(Dispatchers.IO) {
+            dao.getTotalTimeInMillis()
+        }
     }
 }
 
@@ -59,22 +79,22 @@ interface MainRepository {
 
     suspend fun deleteRun(runEntity: RunEntity)
 
-    fun getAllRunSortedByDate(): List<RunEntity>
+    suspend fun getAllRunSortedByDate(): List<RunEntity>
 
-    fun getAllRunSortedByDistance(): List<RunEntity>
+    suspend fun getAllRunSortedByDistance(): List<RunEntity>
 
-    fun getAllRunSortedByTimeInMillis(): List<RunEntity>
+    suspend fun getAllRunSortedByTimeInMillis(): List<RunEntity>
 
-    fun getAllRunSortedByAvgSpeed(): List<RunEntity>
+    suspend fun getAllRunSortedByAvgSpeed(): List<RunEntity>
 
-    fun getAllRunSortedByCaloriesBurned(): List<RunEntity>
+    suspend fun getAllRunSortedByCaloriesBurned(): List<RunEntity>
 
-    fun getTotalAvgSpeed(): Float
+    suspend fun getTotalAvgSpeed(): Float
 
-    fun getTotalDistance(): Int
+    suspend fun getTotalDistance(): Int
 
-    fun getTotalCaloriesBurned(): Int
+    suspend fun getTotalCaloriesBurned(): Int
 
-    fun getTotalTimeInMillis(): Long
+    suspend fun getTotalTimeInMillis(): Long
 
 }

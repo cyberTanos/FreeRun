@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">Maps</string>
     <string name="google_maps_key">AIzaSyAMfwvVoA48qRzqSzqQ1a5dkMjefnBROMk</string>
+    <string-array name="filter_options">
+        <item>Date</item>
+        <item>Running Time</item>
+        <item>Distance</item>
+        <item>Average Speed</item>
+        <item>Calories Burned</item>
+    </string-array>
 </resources>
