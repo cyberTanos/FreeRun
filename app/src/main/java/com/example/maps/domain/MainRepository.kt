@@ -74,27 +74,15 @@ class MainRepositoryImpl @Inject constructor(
 }
 
 interface MainRepository {
-
     suspend fun insertRun(runEntity: RunEntity)
-
     suspend fun deleteRun(runEntity: RunEntity)
-
     suspend fun getAllRunSortedByDate(): List<RunEntity>
-
     suspend fun getAllRunSortedByDistance(): List<RunEntity>
-
     suspend fun getAllRunSortedByTimeInMillis(): List<RunEntity>
-
     suspend fun getAllRunSortedByAvgSpeed(): List<RunEntity>
-
     suspend fun getAllRunSortedByCaloriesBurned(): List<RunEntity>
-
     suspend fun getTotalAvgSpeed(): Float
-
     suspend fun getTotalDistance(): Int
-
     suspend fun getTotalCaloriesBurned(): Int
-
     suspend fun getTotalTimeInMillis(): Long
-
 }
