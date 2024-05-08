@@ -12,6 +12,7 @@ import com.example.maps.R
 import com.example.maps.databinding.FragmentRunBinding
 import com.example.maps.other.REQUEST_CODE_LOCATION_PERMISSION
 import com.example.maps.other.TrackingUtility
+import com.example.maps.other.setTanyaListener
 import dagger.hilt.android.AndroidEntryPoint
 import pub.devrel.easypermissions.AppSettingsDialog
 import pub.devrel.easypermissions.EasyPermissions
@@ -28,7 +29,7 @@ class RunFragment : Fragment(R.layout.fragment_run), EasyPermissions.PermissionC
         _binding = FragmentRunBinding.inflate(inflater, container, false)
 
         bindUI()
-        vm.sortedByDate()
+        sortedBy()
 
         return binding.root
     }
@@ -36,7 +37,7 @@ class RunFragment : Fragment(R.layout.fragment_run), EasyPermissions.PermissionC
     private fun bindUI() {
         binding.rvRuns.adapter = adapter
 
-        vm.runsSortedByDate.observe(viewLifecycleOwner) {
+        vm.runsSortedBy.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
 
@@ -45,10 +46,20 @@ class RunFragment : Fragment(R.layout.fragment_run), EasyPermissions.PermissionC
         }
     }
 
-    private fun requestPermission() {
-        if (TrackingUtility.hasLocationPermission(requireContext())) {
-            return
+    private fun sortedBy() {
+        binding.spFilter.setTanyaListener { position ->
+            when (position) {
+                0 -> vm.sortByDate()
+                1 -> vm.sortByTimeInMillis()
+                2 -> vm.sortByDistance()
+                3 -> vm.sortByAvgSpeed()
+                4 -> vm.sortByCaloriesBurned()
+            }
         }
+    }
+
+    private fun requestPermission() {
+        if (TrackingUtility.hasLocationPermission(requireContext())) return
         EasyPermissions.requestPermissions(
             this,
             "You need to acept location permission to use this app",
@@ -59,7 +70,7 @@ class RunFragment : Fragment(R.layout.fragment_run), EasyPermissions.PermissionC
         )
     }
 
-    override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) {}
+    override fun onPermissionsGranted(requestCode: Int, perms: MutableList<String>) = Unit
 
     override fun onPermissionsDenied(requestCode: Int, perms: MutableList<String>) {
         if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {

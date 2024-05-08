@@ -14,12 +14,35 @@ class RunVM @Inject constructor(
     private val repository: MainRepository
 ) : ViewModel() {
 
-    val runsSortedByDate = MutableLiveData<List<RunEntity>>()
+    val runsSortedBy = MutableLiveData<List<RunEntity>>()
 
-    fun sortedByDate() {
+    fun sortByDate() {
         viewModelScope.launch {
-            val rep = repository.getAllRunSortedByDate()
-            runsSortedByDate.value = rep
+            runsSortedBy.value = repository.getAllRunSortedByDate()
+        }
+    }
+
+    fun sortByDistance() {
+        viewModelScope.launch {
+            runsSortedBy.value = repository.getAllRunSortedByDistance()
+        }
+    }
+
+    fun sortByCaloriesBurned() {
+        viewModelScope.launch {
+            runsSortedBy.value = repository.getAllRunSortedByCaloriesBurned()
+        }
+    }
+
+    fun sortByTimeInMillis() {
+        viewModelScope.launch {
+            runsSortedBy.value = repository.getAllRunSortedByTimeInMillis()
+        }
+    }
+
+    fun sortByAvgSpeed() {
+        viewModelScope.launch {
+            runsSortedBy.value = repository.getAllRunSortedByAvgSpeed()
         }
     }
 }
