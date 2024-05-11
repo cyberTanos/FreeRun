@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 @HiltViewModel
 class RunVM @Inject constructor(
     private val repository: MainRepository,
-    private val sharedPreferences: Preferences
+    private val pref: Preferences
 ) : ViewModel() {
 
     val runsSortedBy = MutableLiveData<List<RunEntity>>()
@@ -48,7 +48,7 @@ class RunVM @Inject constructor(
         }
     }
 
-    fun getNameUserForToolbar(): String {
-        return sharedPreferences.getUserName()
+    fun getName(): String {
+        return pref.getUserName()
     }
 }

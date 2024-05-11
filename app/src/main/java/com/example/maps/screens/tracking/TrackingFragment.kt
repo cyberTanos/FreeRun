@@ -53,11 +53,11 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking) {
         subscribeToObservers()
         createMenu()
 
-        binding.btnToggleRun.setOnClickListener {
+        binding.tvButtonToggle?.setOnClickListener {
             toggleRun()
         }
 
-        binding.btnFinishRun.setOnClickListener {
+        binding.tvButtonFinish?.setOnClickListener {
             zoomToSeeWholeTrack()
         }
 
@@ -135,12 +135,12 @@ class TrackingFragment : Fragment(R.layout.fragment_tracking) {
     private fun updateTracking(isTracking: Boolean) {
         this.isTracking = isTracking
         if (!isTracking) {
-            binding.btnToggleRun.text = "Start"
-            binding.btnFinishRun.visibility = View.VISIBLE
+            binding.tvButtonToggle?.text = "START"
+            binding.tvButtonFinish?.visibility = View.VISIBLE
         } else {
-            binding.btnToggleRun.text = "Stop"
+            binding.tvButtonToggle?.text = "STOP"
             binding.toolbar?.menu?.getItem(0)?.isVisible = true
-            binding.btnFinishRun.visibility = View.GONE
+            binding.tvButtonFinish?.visibility = View.GONE
         }
     }
 

@@ -8,10 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.maps.R
-import com.example.maps.data.preference.Preferences
 import com.example.maps.databinding.FragmentSetupBinding
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class SetupFragment : Fragment(R.layout.fragment_setup) {
@@ -20,9 +18,6 @@ class SetupFragment : Fragment(R.layout.fragment_setup) {
     private val binding get() = _binding!!
 
     private val vm: SetupVM by viewModels()
-
-    @Inject
-    lateinit var sharedPreferences: Preferences
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentSetupBinding.inflate(inflater, container, false)

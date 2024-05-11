@@ -2,40 +2,44 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
-        app:layout_constraintBottom_toTopOf="@+id/titleWelcome"
+        android:background="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#03A9F4"
-            app:title="Running App"
-            app:titleTextColor="@color/white" />
-
-    </com.google.android.material.appbar.AppBarLayout>
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingStart="8dp"
+        android:text="RUNNING APP"
+        android:textColor="@color/theme"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/toolbar"
+        app:layout_constraintEnd_toEndOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="@id/toolbar"
+        app:layout_constraintTop_toTopOf="@id/toolbar" />
 
     <TextView
         android:id="@+id/titleWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
         android:gravity="center"
         android:padding="8dp"
         android:text="Welcome!\nPlease enter your name and weight."
         android:textSize="36dp"
         app:layout_constraintBottom_toTopOf="@+id/titleNameText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/titleNameText"
@@ -44,10 +48,10 @@
         android:layout_marginTop="36dp"
         android:gravity="center"
         android:hint="Your Name"
-        app:boxStrokeColor="#03A9F4"
+        app:boxStrokeColor="@color/theme"
         app:cursorColor="@color/black"
         app:errorEnabled="false"
-        app:hintTextColor="#03A9F4"
+        app:hintTextColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/titleWelcome"
         app:layout_constraintStart_toStartOf="@+id/titleWelcome"
         app:layout_constraintTop_toBottomOf="@id/titleWelcome">
@@ -66,9 +70,9 @@
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:hint="Your Weight"
-        app:boxStrokeColor="#03A9F4"
+        app:boxStrokeColor="@color/theme"
         app:cursorColor="@color/black"
-        app:hintTextColor="#03A9F4"
+        app:hintTextColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/titleNameText"
         app:layout_constraintStart_toStartOf="@+id/titleNameText"
         app:layout_constraintTop_toBottomOf="@id/titleNameText">
@@ -96,6 +100,7 @@
         android:id="@+id/buttonContinue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="24dp"
         android:text="Continue"
         android:textColor="@color/black"
         android:textSize="24sp"

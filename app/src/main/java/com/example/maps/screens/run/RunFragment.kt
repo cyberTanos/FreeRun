@@ -37,8 +37,7 @@ class RunFragment : Fragment(R.layout.fragment_run), EasyPermissions.PermissionC
     private fun bindUI() {
         binding.rvRuns.adapter = adapter
 
-        val toolbarText = vm.getNameUserForToolbar()
-        binding.toolbar.title = "Let's go, $toolbarText"
+        binding.tvTitle.text = "LET'S GO, ${vm.getName().toUpperCase()}"
 
         vm.runsSortedBy.observe(viewLifecycleOwner) {
             adapter.submitList(it)
