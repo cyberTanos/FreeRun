@@ -3,7 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp">
+    android:background="@color/background">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingStart="8dp"
+        android:text="RUNNING APP"
+        android:textColor="@color/theme"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/toolbar"
+        app:layout_constraintEnd_toEndOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="@id/toolbar"
+        app:layout_constraintTop_toTopOf="@id/toolbar" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/titleNameText"
@@ -12,9 +35,9 @@
         android:layout_marginTop="220dp"
         android:gravity="center"
         android:hint="Your Name"
-        app:boxStrokeColor="#03A9F4"
+        app:boxStrokeColor="@color/theme"
         app:cursorColor="@color/black"
-        app:hintTextColor="#03A9F4"
+        app:hintTextColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -34,9 +57,9 @@
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:hint="Your Weight"
-        app:boxStrokeColor="#03A9F4"
+        app:boxStrokeColor="@color/theme"
         app:cursorColor="@color/black"
-        app:hintTextColor="#03A9F4"
+        app:hintTextColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/titleNameText"
         app:layout_constraintStart_toStartOf="@+id/titleNameText"
         app:layout_constraintTop_toBottomOf="@id/titleNameText">
@@ -65,8 +88,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:backgroundTint="#03A9F4"
+        android:backgroundTint="@color/black"
         android:text="Apply Changes"
+        android:textColor="@color/theme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleWeightText" />
