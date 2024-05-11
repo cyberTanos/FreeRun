@@ -3,6 +3,7 @@ package com.example.maps.screens.run
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.maps.data.preference.Preferences
 import com.example.maps.domain.MainRepository
 import com.example.maps.model.entity.RunEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,7 +12,8 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class RunVM @Inject constructor(
-    private val repository: MainRepository
+    private val repository: MainRepository,
+    private val sharedPreferences: Preferences
 ) : ViewModel() {
 
     val runsSortedBy = MutableLiveData<List<RunEntity>>()
@@ -44,5 +46,9 @@ class RunVM @Inject constructor(
         viewModelScope.launch {
             runsSortedBy.value = repository.getAllRunSortedByAvgSpeed()
         }
+    }
+
+    fun getNameUserForToolbar(): String {
+        return sharedPreferences.getUserName()
     }
 }
