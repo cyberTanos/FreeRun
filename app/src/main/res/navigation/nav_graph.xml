@@ -17,7 +17,9 @@
         tools:layout="@layout/fragment_setup">
         <action
             android:id="@+id/to_runFragment"
-            app:destination="@id/runFragment" />
+            app:destination="@id/runFragment"
+            app:popUpTo="@id/setupFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
