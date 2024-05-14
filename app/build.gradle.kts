@@ -1,8 +1,8 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
-    id("com.google.dagger.hilt.android")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.org.jetbrains.kotlin.kapt)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -31,54 +31,53 @@ kapt {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.13.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.11.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.constraintlayout)
 
     // Navigation Components
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 
     // Architectural Components View Model
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
     // LiveData
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
+    implementation(libs.androidx.lifecycle.livedata.ktx)
 
     // Room
-    implementation("androidx.room:room-runtime:2.6.1")
-    kapt("androidx.room:room-compiler:2.6.1")
-    implementation("androidx.room:room-ktx:2.6.1")
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
 
     // Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
 
     // Coroutine Lifecycle Scopes
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
+    implementation(libs.androidx.lifecycle.runtime.ktx)
 
     // Glide
-    implementation("com.github.bumptech.glide:glide:4.16.0")
-    kapt("com.github.bumptech.glide:compiler:4.11.0")
+    implementation(libs.glide)
+    kapt(libs.compiler)
 
     // Google Maps Location Services
-    implementation("com.google.android.gms:play-services-location:21.2.0")
-    implementation("com.google.android.gms:play-services-maps:18.2.0")
+    implementation(libs.play.services.location)
+    implementation(libs.play.services.maps)
 
     // Hilt
-    implementation("com.google.dagger:hilt-android:2.50")
-    kapt("com.google.dagger:hilt-android-compiler:2.50")
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
 
     // Easy Permissions
-    implementation("pub.devrel:easypermissions:3.0.0")
+    implementation(libs.easypermissions)
 
     // Timber
-    implementation("com.jakewharton.timber:timber:4.7.1")
+    implementation(libs.timber)
 
     // MPAndroidChart
-    implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    implementation(libs.chart)
 
     // LifecycleService
-    implementation("androidx.lifecycle:lifecycle-service:2.7.0")
-
+    implementation(libs.androidx.lifecycle.service)
 }

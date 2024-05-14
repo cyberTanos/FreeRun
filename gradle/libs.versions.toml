@@ -1,0 +1,52 @@
+[versions]
+appcompat = "1.6.1"
+compiler = "4.11.0"
+constraintlayout = "2.1.4"
+core-ktx = "1.13.0"
+easypermissions = "3.0.0"
+glide = "4.16.0"
+hilt-android = "2.50"
+kotlinx-coroutines-android = "1.7.1"
+kotlinx-coroutines-core = "1.4.1"
+lifecycle-viewmodel-ktx = "2.7.0"
+material = "1.11.0"
+mp-android-chart = "v3.1.0"
+navigation-fragment-ktx = "2.7.7"
+play-services-location = "21.2.0"
+play-services-maps = "18.2.0"
+room-runtime = "2.6.1"
+timber = "4.7.1"
+androidGradlePlugin = "8.2.1"
+org-jetbrains-kotlin-android = "1.9.22"
+
+[libraries]
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
+androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycle-viewmodel-ktx" }
+androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle-viewmodel-ktx" }
+androidx-lifecycle-service = { module = "androidx.lifecycle:lifecycle-service", version.ref = "lifecycle-viewmodel-ktx" }
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle-viewmodel-ktx" }
+androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation-fragment-ktx" }
+androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation-fragment-ktx" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room-runtime" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room-runtime" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room-runtime" }
+compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "compiler" }
+easypermissions = { module = "pub.devrel:easypermissions", version.ref = "easypermissions" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt-android" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt-android" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines-android" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx-coroutines-core" }
+material = { module = "com.google.android.material:material", version.ref = "material" }
+chart = { module = "com.github.PhilJay:MPAndroidChart", version.ref = "mp-android-chart" }
+play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "play-services-location" }
+play-services-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "play-services-maps" }
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin-android" }
+org-jetbrains-kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "org-jetbrains-kotlin-android" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt-android" }
