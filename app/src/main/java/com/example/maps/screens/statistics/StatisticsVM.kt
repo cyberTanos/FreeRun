@@ -1,14 +1,11 @@
 package com.example.maps.screens.statistics
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.liveData
 import com.example.maps.data.preference.Preferences
 import com.example.maps.domain.MainRepository
-import com.example.maps.model.entity.RunEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-import kotlinx.coroutines.launch
 
 @HiltViewModel
 class StatisticsVM @Inject constructor(
@@ -16,40 +13,21 @@ class StatisticsVM @Inject constructor(
     private val pref: Preferences
 ) : ViewModel() {
 
-    val statisticsLD = MutableLiveData<List<RunEntity>>()
-    val timeRunLD = MutableLiveData<Long>()
-    val distanceLD = MutableLiveData<Int>()
-    val caloriesBurnedLD = MutableLiveData<Int>()
-    val avgSpeedD = MutableLiveData<Float>()
-
-    fun getTotalTimeRun() {
-        viewModelScope.launch {
-            timeRunLD.value = repository.getTotalTimeInMillis()
-        }
+    val statisticsLD = liveData {
+        emit(repository.getAllRunSortedByDate())
+    }
+    val avgSpeedD = liveData {
+        emit(repository.getTotalAvgSpeed())
     }
 
-    fun getTotalDistance() {
-        viewModelScope.launch {
-            distanceLD.value = repository.getTotalDistance()
-        }
+    val timeRunLD = liveData {
+        emit(repository.getTotalTimeInMillis())
     }
-
-    fun getTotalCaloriesBurned() {
-        viewModelScope.launch {
-            caloriesBurnedLD.value = repository.getTotalCaloriesBurned()
-        }
+    val distanceLD = liveData {
+        emit(repository.getTotalDistance())
     }
-
-    fun getTotalAvgSpeed() {
-        viewModelScope.launch {
-            avgSpeedD.value = repository.getTotalAvgSpeed()
-        }
-    }
-
-    fun getSortedByDate() {
-        viewModelScope.launch {
-            statisticsLD.value = repository.getAllRunSortedByDate()
-        }
+    val caloriesBurnedLD = liveData {
+        emit(repository.getTotalCaloriesBurned())
     }
 
     fun getName(): String {

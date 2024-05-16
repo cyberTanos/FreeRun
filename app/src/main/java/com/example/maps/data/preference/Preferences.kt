@@ -2,6 +2,7 @@ package com.example.maps.data.preference
 
 import android.content.SharedPreferences
 import com.example.maps.model.data.User
+import com.example.maps.other.DEFAULT_WEIGHT
 import com.example.maps.other.KEY_FIRST_TIME_TOGGLE
 import com.example.maps.other.KEY_NAME
 import com.example.maps.other.KEY_WEIGHT
@@ -21,7 +22,7 @@ class Preferences(private val sharedPreferences: SharedPreferences) {
     }
 
     fun getUserWeight(): Float {
-        return sharedPreferences.getFloat(KEY_WEIGHT, 80f)
+        return sharedPreferences.getFloat(KEY_WEIGHT, DEFAULT_WEIGHT)
     }
 
     fun getUserIsSave(): Boolean {

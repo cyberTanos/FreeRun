@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.maps.R
 import com.example.maps.databinding.ItemRunBinding
 import com.example.maps.model.entity.RunEntity
 import com.example.maps.other.TrackingUtility
@@ -13,6 +14,8 @@ import com.example.maps.screens.run.RunAdapter.RunVH
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
+
+private const val METERS_IN_KM = 1000f
 
 class RunAdapter : ListAdapter<RunEntity, RunVH>(Differ) {
 
@@ -22,18 +25,18 @@ class RunAdapter : ListAdapter<RunEntity, RunVH>(Differ) {
             val calendar = Calendar.getInstance().apply {
                 timeInMillis = runEntity.timeInMillis
             }
-            val dateFormat = SimpleDateFormat("dd.MM.yy", Locale.getDefault())
+            val dateFormat = SimpleDateFormat(binding.root.context.getString(R.string.data_format), Locale.getDefault())
             binding.tvDate.text = dateFormat.format(calendar.time)
 
-            val avgSpeed = "${runEntity.avgSpeedInKMH}km/h"
+            val avgSpeed = "${runEntity.avgSpeedInKMH}${binding.root.context.getString(R.string.avg_speed_kmh)}"
             binding.tvAvgSpeed.text = avgSpeed
 
-            val distanceInKm = "${runEntity.distanceInMeters / 1000f}km"
+            val distanceInKm = "${runEntity.distanceInMeters / METERS_IN_KM}${binding.root.context.getString(R.string.distance_km)}"
             binding.tvDistance.text = distanceInKm
 
             binding.tvTime.text = TrackingUtility.getFormattedStopWatchTime(runEntity.timeInMillis)
 
-            val caloriesBurned = "${runEntity.caloriesBurned}kcal"
+            val caloriesBurned = "${runEntity.caloriesBurned}${binding.root.context.getString(R.string.calories_kcal)}"
             binding.tvCalories.text = caloriesBurned
         }
     }

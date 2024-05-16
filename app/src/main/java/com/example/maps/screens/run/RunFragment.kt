@@ -12,7 +12,7 @@ import com.example.maps.R
 import com.example.maps.databinding.FragmentRunBinding
 import com.example.maps.other.REQUEST_CODE_LOCATION_PERMISSION
 import com.example.maps.other.TrackingUtility
-import com.example.maps.other.setTanyaListener
+import com.example.maps.other.setListener
 import dagger.hilt.android.AndroidEntryPoint
 import pub.devrel.easypermissions.AppSettingsDialog
 import pub.devrel.easypermissions.EasyPermissions
@@ -36,8 +36,7 @@ class RunFragment : Fragment(R.layout.fragment_run), EasyPermissions.PermissionC
 
     private fun bindUI() {
         binding.rvRuns.adapter = adapter
-
-        binding.tvTitle.text = "LET'S GO, ${vm.getName().toUpperCase()}"
+        binding.tvTitle.text = getString(R.string.change_toolbar_text, vm.getName().uppercase())
 
         vm.runsSortedBy.observe(viewLifecycleOwner) {
             adapter.submitList(it)
@@ -49,7 +48,7 @@ class RunFragment : Fragment(R.layout.fragment_run), EasyPermissions.PermissionC
     }
 
     private fun sortedBy() {
-        binding.spFilter.setTanyaListener { position ->
+        binding.spFilter.setListener { position ->
             when (position) {
                 0 -> vm.sortByDate()
                 1 -> vm.sortByTimeInMillis()
@@ -64,7 +63,7 @@ class RunFragment : Fragment(R.layout.fragment_run), EasyPermissions.PermissionC
         if (TrackingUtility.hasLocationPermission(requireContext())) return
         EasyPermissions.requestPermissions(
             this,
-            "You need to acept location permission to use this app",
+            requireContext().getString(R.string.permission_location),
             REQUEST_CODE_LOCATION_PERMISSION,
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION,

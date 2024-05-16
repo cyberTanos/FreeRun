@@ -12,6 +12,8 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
+private const val METERS_IN_KM = 1000f
+
 class CustomMarkerView(
     val runEntity: List<RunEntity>,
     c: Context,
@@ -38,18 +40,18 @@ class CustomMarkerView(
         val calendar = Calendar.getInstance().apply {
             timeInMillis = runEntity.timeInMillis
         }
-        val dateFormat = SimpleDateFormat("dd.MM.yy", Locale.getDefault())
+        val dateFormat = SimpleDateFormat(context.getString(R.string.data_format), Locale.getDefault())
         date.text = dateFormat.format(calendar.time)
 
-        val avgSpeed = "${runEntity.avgSpeedInKMH}km/h"
+        val avgSpeed = "${runEntity.avgSpeedInKMH}${context.getString(R.string.avg_speed_kmh)}"
         avgSP.text = avgSpeed
 
-        val distanceInKm = "${runEntity.distanceInMeters / 1000f}km"
+        val distanceInKm = "${runEntity.distanceInMeters / METERS_IN_KM}${context.getString(R.string.distance_km)}"
         distance.text = distanceInKm
 
         dur.text = TrackingUtility.getFormattedStopWatchTime(runEntity.timeInMillis)
 
-        val caloriesBurned = "${runEntity.caloriesBurned}kcal"
+        val caloriesBurned = "${runEntity.caloriesBurned}${context.getString(R.string.calories_kcal)}"
         calories.text = caloriesBurned
     }
 }
