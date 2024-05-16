@@ -51,7 +51,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     }
 
     private fun setToolbar() {
-        binding.tvTitle.text = "LET'S GO, ${vm.getName().toUpperCase()}"
+        binding.tvTitle.text = getString(R.string.change_toolbar_text, vm.getName().uppercase())
     }
 
     override fun onDestroy() {

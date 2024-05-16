@@ -1,6 +1,29 @@
 <resources>
     <string name="app_name">Maps</string>
-    <string name="error_empty_text_field">Пустое поле</string>
+    <string name="error_empty_text_field">Empty field</string>
+    <string name="toolbar_text">RUNNING APP</string>
+    <string name="notification_title">Running App</string>
+    <string name="change_toolbar_text">LETS GO, %1$s</string>
+    <string name="distance_km">km</string>
+    <string name="calories_kcal">kcal</string>
+    <string name="avg_speed_kmh">km/h</string>
+    <string name="notification_content">00:00:00</string>
+    <string name="data_format">dd.MM.yy0</string>
+    <string name="resuming_service">Resuming service...</string>
+    <string name="paused_service">Paused service</string>
+    <string name="stopped_service">Stopped service</string>
+    <string name="notification_action_text_pause">Pause</string>
+    <string name="notification_action_text_resume">Resume</string>
+    <string name="permission_location">You need to acept location permission to use this app</string>
+    <string name="tracking_dialog_title">Cancel the Run</string>
+    <string name="tracking_dialog_message">Are you sure to cancel the current run and delete all its data?</string>
+    <string name="tracking_dialog_positive_bt">Yes</string>
+    <string name="tracking_dialog_negative_bt">No</string>
+    <string name="bt_toggle_start">START</string>
+    <string name="bt_toggle_stop">STOP</string>
+    <string name="toast_text_permission_or_not_run">Вы не двигались или проверьте разрешения</string>
+    <string name="snackbar_run_saved">Run saved successfully</string>
+    <string name="bar_chart_descrip_text">Avg Speed Over Time</string>
     <string name="google_maps_key">AIzaSyAMfwvVoA48qRzqSzqQ1a5dkMjefnBROMk</string>
     <string-array name="filter_options">
         <item>Date</item>

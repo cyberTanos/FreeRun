@@ -5,6 +5,8 @@ import android.graphics.BitmapFactory
 import androidx.room.TypeConverter
 import java.io.ByteArrayOutputStream
 
+private const val QUALITY_COMPRESS = 100
+
 class Converters {
 
     @TypeConverter
@@ -15,7 +17,7 @@ class Converters {
     @TypeConverter
     fun Bitmap.fromBitmap(): ByteArray {
         val outputStream = ByteArrayOutputStream()
-        this.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+        this.compress(Bitmap.CompressFormat.PNG, QUALITY_COMPRESS, outputStream)
         return outputStream.toByteArray()
     }
 }

@@ -3,38 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:background="@color/background">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvTotalDistanceInfo"
-        android:layout_width="wrap_content"
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Total Distance"
-        app:layout_constraintEnd_toEndOf="@+id/tvTotalDistance"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/tvTotalDistance"
-        app:layout_constraintTop_toBottomOf="@+id/tvTotalDistance" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvTotalDistance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0km"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintEnd_toEndOf="@+id/tvAverageSpeed"
-        app:layout_constraintStart_toStartOf="@+id/tvAverageSpeed"
+        android:background="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tvTotalTimeInfo"
+    <TextView
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total Time"
-        app:layout_constraintEnd_toEndOf="@+id/tvTotalTime"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/tvTotalTime"
-        app:layout_constraintTop_toBottomOf="@+id/tvTotalTime" />
+        android:gravity="center"
+        android:paddingStart="8dp"
+        android:text="RUNNING APP"
+        android:textColor="@color/theme"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/toolbar"
+        app:layout_constraintEnd_toEndOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="@id/toolbar"
+        app:layout_constraintTop_toTopOf="@id/toolbar" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvTotalTime"
@@ -45,7 +37,36 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="@+id/tvTotalCalories"
         app:layout_constraintStart_toStartOf="@+id/tvTotalCalories"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvTotalTimeInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Time"
+        app:layout_constraintEnd_toEndOf="@+id/tvTotalTime"
+        app:layout_constraintStart_toStartOf="@+id/tvTotalTime"
+        app:layout_constraintTop_toBottomOf="@+id/tvTotalTime" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvTotalDistance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0km"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toEndOf="@+id/tvAverageSpeed"
+        app:layout_constraintStart_toStartOf="@+id/tvAverageSpeed"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvTotalDistanceInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total Distance"
+        app:layout_constraintEnd_toEndOf="@+id/tvTotalDistance"
+        app:layout_constraintStart_toStartOf="@+id/tvTotalDistance"
+        app:layout_constraintTop_toBottomOf="@+id/tvTotalDistance" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvTotalCalories"
@@ -55,7 +76,6 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tvAverageSpeed"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
@@ -74,7 +94,6 @@
         android:layout_height="wrap_content"
         android:text="Average Speed"
         app:layout_constraintEnd_toEndOf="@+id/tvAverageSpeed"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/tvAverageSpeed"
         app:layout_constraintTop_toBottomOf="@+id/tvAverageSpeed" />
 
@@ -86,7 +105,6 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/barChart"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tvTotalCalories"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
@@ -108,9 +126,10 @@
         android:id="@+id/barChart"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_margin="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -38,6 +38,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
+private const val MILLISECONDS_IN_SECOND = 1000L
+
 /*"Polyline" представляет список точек (LatLng) для одной линии на карте,
 а "Polylines" представляет список линий (Polyline) для отображения маршрута.*/
 
@@ -110,18 +112,18 @@ class TrackingService : LifecycleService() {
                         startForegroundService()
                         isFirstRun = false
                     } else {
-                        Timber.d("Resuming service...")
+                        Timber.d(this.getString(R.string.resuming_service))
                         startTimer()
                     }
                 }
 
                 ACTION_PAUSE_SERVICE -> {
-                    Timber.d("Paused service")
+                    Timber.d(this.getString(R.string.paused_service))
                     pauseService()
                 }
 
                 ACTION_STOP_SERVICE -> {
-                    Timber.d("Stopped service")
+                    Timber.d(this.getString(R.string.stopped_service))
                     killService()
                 }
             }
@@ -144,9 +146,9 @@ class TrackingService : LifecycleService() {
             while (isTracking.value!!) {
                 lapTime = System.currentTimeMillis() - timeStarted
                 timeRunInMillis.postValue(timeRun + lapTime)
-                if (timeRunInMillis.value!! >= lastSecondTimestamp + 1000L) {
+                if (timeRunInMillis.value!! >= lastSecondTimestamp + MILLISECONDS_IN_SECOND) {
                     timeRunInSeconds.postValue(timeRunInSeconds.value!! + 1)
-                    lastSecondTimestamp += 1000L
+                    lastSecondTimestamp += MILLISECONDS_IN_SECOND
                 }
                 delay(TIMER_UPDATE_INTERVAL)
             }
@@ -160,7 +162,8 @@ class TrackingService : LifecycleService() {
     }
 
     private fun updateNotificationTrackingState(isTracking: Boolean) {
-        val notificationActionText = if (isTracking) "Pause" else "Resume"
+        val notificationActionText =
+            if (isTracking) this.getString(R.string.notification_action_text_pause) else this.getString(R.string.notification_action_text_resume)
         val pendingIntent = if (isTracking) {
             val pauseIntent = Intent(this, TrackingService::class.java).apply {
                 action = ACTION_PAUSE_SERVICE
@@ -245,7 +248,7 @@ class TrackingService : LifecycleService() {
         timeRunInSeconds.observe(this) {
             if (!serviceKilled) {
                 val notification = curNotificationBuilder
-                    .setContentText(TrackingUtility.getFormattedStopWatchTime(it * 1000L))
+                    .setContentText(TrackingUtility.getFormattedStopWatchTime(it * MILLISECONDS_IN_SECOND))
                 notificationManager.notify(NOTIFICATION_ID, notification.build())
             }
         }

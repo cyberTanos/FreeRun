@@ -5,7 +5,7 @@ import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.Spinner
 
-fun Spinner.setTanyaListener(action: (position: Int) -> Unit) {
+fun Spinner.setListener(action: (position: Int) -> Unit) {
     this.onItemSelectedListener = object : OnItemSelectedListener {
         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
             action.invoke(position)

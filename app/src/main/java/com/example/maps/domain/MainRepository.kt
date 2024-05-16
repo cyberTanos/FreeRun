@@ -11,11 +11,15 @@ class MainRepositoryImpl @Inject constructor(
 ) : MainRepository {
 
     override suspend fun insertRun(runEntity: RunEntity) {
-        dao.insertRun(runEntity)
+        withContext(Dispatchers.IO) {
+            dao.insertRun(runEntity)
+        }
     }
 
     override suspend fun deleteRun(runEntity: RunEntity) {
-        dao.deleteRun(runEntity)
+        withContext(Dispatchers.IO) {
+            dao.deleteRun(runEntity)
+        }
     }
 
     override suspend fun getAllRunSortedByDate(): List<RunEntity> {

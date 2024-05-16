@@ -40,7 +40,6 @@ object ServiceModule {
         )
     }
 
-
     @ServiceScoped
     @Provides
     fun provideNotification(@ApplicationContext appContext: Context, pendingIntent: PendingIntent): NotificationCompat.Builder {
@@ -48,8 +47,8 @@ object ServiceModule {
             .setAutoCancel(false)
             .setOngoing(true)
             .setSmallIcon(R.drawable.ic_run_circle)
-            .setContentTitle("Running App")
-            .setContentText("00:00:00")
+            .setContentTitle(appContext.getString(R.string.notification_title))
+            .setContentText(appContext.getString(R.string.notification_content))
             .setContentIntent(pendingIntent)
     }
 }

@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupBottomNav() {
         binding.bottomNav.setupWithNavController(findNavController(R.id.nav_host_fragment_container))
+        binding.bottomNav.setOnNavigationItemReselectedListener { /* NO-OP*/ }
         findNavController(R.id.nav_host_fragment_container).addOnDestinationChangedListener { _, destination, _ ->
             binding.bottomNav.isVisible = destination.id != R.id.setupFragment && destination.id != R.id.trackingFragment
         }

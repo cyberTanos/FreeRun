@@ -19,6 +19,9 @@ import com.github.mikephil.charting.data.BarEntry
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.round
 
+private const val METERS_IN_KM = 1000f
+private const val ROUNDING_NUMBER = 10f
+
 @AndroidEntryPoint
 class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
 
@@ -32,11 +35,6 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
         observeVM()
         setToolbar()
         setupBarChart()
-        vm.getSortedByDate()
-        vm.getTotalTimeRun()
-        vm.getTotalDistance()
-        vm.getTotalCaloriesBurned()
-        vm.getTotalAvgSpeed()
 
         return binding.root
     }
@@ -45,9 +43,9 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
         vm.statisticsLD.observe(viewLifecycleOwner) {
             it?.let {
                 val allAvgSpeeds = it.indices.map { i -> BarEntry(i.toFloat(), it[i].avgSpeedInKMH) }
-                val barDataSet = BarDataSet(allAvgSpeeds, "Avg Speed Over Time").apply {
+                val barDataSet = BarDataSet(allAvgSpeeds, getString(R.string.bar_chart_descrip_text)).apply {
                     valueTextColor = Color.WHITE
-                    color = ContextCompat.getColor(requireContext(), pub.devrel.easypermissions.R.color.tooltip_background_dark)
+                    color = ContextCompat.getColor(requireContext(), pub.devrel.easypermissions.R.color.material_blue_grey_800)
                 }
                 binding.barChart.data = BarData(barDataSet)
                 binding.barChart.marker = CustomMarkerView(it.reversed(), requireContext(), R.layout.marker_view)
@@ -61,29 +59,30 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
         }
         vm.distanceLD.observe(viewLifecycleOwner) {
             it?.let {
-                val km = it / 1000f
-                val totalDistance = round(km * 10f) / 10f
-                val totalDistanceString = "${totalDistance}km"
+                // ADD CONST VAL
+                val km = it / METERS_IN_KM
+                val totalDistance = round(km * ROUNDING_NUMBER) / ROUNDING_NUMBER
+                val totalDistanceString = "$totalDistance ${getString(R.string.distance_km)}"
                 binding.tvTotalDistance.text = totalDistanceString
             }
         }
         vm.caloriesBurnedLD.observe(viewLifecycleOwner) {
             it?.let {
-                val totalCalories = "${it}kcal"
+                val totalCalories = "$it ${getString(R.string.calories_kcal)}"
                 binding.tvTotalCalories.text = totalCalories
             }
         }
         vm.avgSpeedD.observe(viewLifecycleOwner) {
             it?.let {
-                val avgSpeed = round(it * 10f) / 10f
-                val avgSpeedString = "${avgSpeed}km/h"
+                val avgSpeed = round(it * ROUNDING_NUMBER) / ROUNDING_NUMBER
+                val avgSpeedString = "$avgSpeed ${getString(R.string.avg_speed_kmh)}"
                 binding.tvAverageSpeed.text = avgSpeedString
             }
         }
     }
 
     private fun setToolbar() {
-        binding.tvTitle?.text = "LET'S GO, ${vm.getName().toUpperCase()}"
+        binding.tvTitle?.text = getString(R.string.change_toolbar_text, vm.getName().uppercase())
     }
 
     private fun setupBarChart() {
@@ -105,7 +104,7 @@ class StatisticsFragment : Fragment(R.layout.fragment_statistics) {
             setDrawGridLines(false)
         }
         binding.barChart.apply {
-            description.text = "Avg Speed Over Time"
+            description.text = getString(R.string.bar_chart_descrip_text)
             legend.isEnabled = false
         }
     }
